@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="it-IT">
+
+<head profile="http://gmpg.org/xfn/11">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>TITOLO</title>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/MenuMatic.css" type="text/css" media="screen" charset="utf-8" />
+	<!--[if lt IE 7]>
+	<link rel="stylesheet" href="css/MenuMatic-ie6.css" type="text/css" media="screen" charset="utf-8" />
+	<![endif]-->
+<script type="text/javascript">
+	function Cookie(name) {
+		this.$name = name;
+		var allcookies = document.cookie;
+		if (allcookies == "") return;
+		var cookies = allcookies.split(';');
+		var cookie = null;
+		for(var i = 0; i < cookies.length; i++) {
+			if (cookies[i].substring(0, name.length+1) == (name + "=")) {
+				cookie = cookies[i];
+				break;
+			}
+		}
+
+		if (cookie == null) return;
+
+		var cookieval = cookie.substring(name.length+1);
+		var a = cookieval.split('&');
+		for(var i=0; i < a.length; i++)
+			a[i] = a[i].split(':');
+		for(var i = 0; i < a.length; i++) {
+			this[a[i][0]] = decodeURIComponent(a[i][1]);
+		}
+	}
+
+	Cookie.prototype.store = function(daysToLive, path, domain, secure) {
+		var cookieval = "";
+		for(var prop in this) {
+			if ((prop.charAt(0) == '$') || ((typeof this[prop]) == 'function')) 
+				continue;
+			if (cookieval != "") cookieval += '&';
+			cookieval += prop + ':' + encodeURIComponent(this[prop]);
+		}
+		var cookie = this.$name + '=' + cookieval;
+		if (daysToLive || daysToLive == 0) { 
+			cookie += "; max-age=" + (daysToLive*24*60*60);
+		}
+
+		if (path) cookie += "; path=" + path;
+		if (domain) cookie += "; domain=" + domain;
+		if (secure) cookie += "; secure";
+		document.cookie = cookie;
+	}
+
+	Cookie.prototype.remove = function(path, domain, secure) {
+		for(var prop in this) {
+			if (prop.charAt(0) != '$' && typeof this[prop] != 'function') 
+				delete this[prop];
+		}
+		this.store(0, path, domain, secure);
+	}
+
+	Cookie.enabled = function() {
+		if (navigator.cookieEnabled != undefined) return navigator.cookieEnabled;
+		if (Cookie.enabled.cache != undefined) return Cookie.enabled.cache;
+		document.cookie = "testcookie=test; max-age=10000";
+		var cookies = document.cookie;
+		if (cookies.indexOf("testcookie=test") == -1) {
+			return Cookie.enabled.cache = false;
+		}
+		else {
+			document.cookie = "testcookie=test; max-age=0";
+			return Cookie.enabled.cache = true;
+		}
+	}
+				
+	var cookie = new Cookie("faldo-cookie");	
+	
+	function selectLanguage(selectedLanguage) {
+		cookie.language = selectedLanguage;
+		cookie.store(365);
+		redirect(selectedLanguage);
+	}
+	
+	function redirect(language) {
+		if (language == 'it') {
+			// URL Sito in italiano
+			// window.location = "http://www.esahmi.it/";
+		} else if (language == 'zh') {
+			// URL Sito in cinese
+			// window.location = "http://www.esahmi.it/";
+		} else if ((language = 'ww') || (language = 'en')) {
+			// URL sito Worldwide
+			// window.location = "http://www.esahmi.it/";
+		}
+	}
+
+	function startup() {
+		var language = '';
+		if ((cookie.language == 'it') || (cookie.language == 'zh') || (cookie.language == 'en')) {
+			language = cookie.language;
+		} else {
+			language = (navigator.language) ? navigator.language : navigator.browserLanguage;
+			language = language.substring(0,2);
+			if ((language != 'it') && (language != 'zh') && (language != 'en')) {
+				language = 'ww'; 
+			}
+			selectLanguage(language);
+		}
+		redirect(language);
+	}
+	startup();
+</script>		
+
+</head>
+
+<body>
+
+
+   <!-- Load the Mootools Framework -->
+<script src="http://www.google.com/jsapi"></script><script>google.load("mootools", "1.2.1");</script>	
+	
+	<!-- Load the MenuMatic Class -->
+	<script src="js/MenuMatic_0.68.3.js" type="text/javascript" charset="utf-8"></script>
+	
+	<!-- Create a MenuMatic Instance -->
+	<script type="text/javascript" >
+		window.addEvent('domready', function() {			
+			var myMenu = new MenuMatic();
+		});		
+	</script>
+
+<div id="header"> <a href="#"><img src="img/header.jpg" width="960" height="120" alt="Esa Electronics" /></a></div>
+
+<div class="container">
+<div class="grid">
+<div id="pagemenu">
+
+     <!-- BEGIN Menu -->
+      <ul id="nav">
+      
+      <!-- HOME -->
+  		<li><a href="#">Home</a>
+			  <ul>
+					<li><a href="#">Mission</a></li>
+		
+					<li><a href="#">Strategy</a></li>
+
+					<li><a href="#">Quality</a></li>
+                    
+                    <li><a href="#">History</a></li>
+                    
+                    <li><a href="#">Contact us</a></li>
+		
+				</ul>
+			</li>
+            
+            
+        <!-- HMI -->
+  		<li><a href="#">HMI</a>
+			  <ul>
+					<li><a href="#">IT Series</a></li>
+		
+					<li><a href="#">XT Series</a></li>
+
+					<li><a href="#">VT Series</a></li>
+                    
+                    <li><a href="#">Certifications</a></li>
+				</ul>
+			</li>
+            
+         <!-- IPC -->
+  		<li><a href="#">IPC</a>
+			  <ul>
+					<li><a href="#">XS Series</a></li>
+		
+					<li><a href="#">Monitor</a></li>
+
+					<li><a href="#">PC2200</a></li>
+                    
+                    <li><a href="#">PC2000</a></li>
+                    
+                    <li><a href="#">Certifications</a></li>
+				</ul>
+			</li>       
+
+			<li><a href="#">Wall Mount</a>
+		
+				<ul>
+
+					<li><a href="#">Visualyser</a>
+						<ul>
+							<li><a href="#">YT Series</a></li>
+							<li><a href="#">YP Series</a></li>
+							<li><a href="#">YX Series</a></li>
+						</ul>
+					</li>
+                    
+					<li><a href="#">Frame</a>
+						<ul>
+							<li><a href="#">Bold</a></li>
+							<li><a href="#">Vogue</a></li>
+							<li><a href="#">Prime</a></li>
+							<li><a href="#">Classic</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		
+			<li><a href="#">Software</a>
+			  <ul>
+					<li><a href="#">Polymath</a>
+						<ul>
+							<li><a href="#">Basic</a></li>
+							<li><a href="#">Advance</a></li>
+                            <li><a href="#">Runtime</a></li>
+
+					   </ul>
+					</li>
+					<li><a href="#">MyVision</a></li>
+				</ul>
+			</li>
+            
+            <li><a href="#">Protocols</a></li>
+            
+            <li><a href="#">Custom</a>
+						<ul>
+							<li><a href="#">Renevable Energy</a></li>
+							<li><a href="#">Custom Solutions</a></li>
+                            <li><a href="#">Public Administration</a></li>
+
+					   </ul>
+			</li>
+            
+               <li><a href="#">News</a>
+						<ul>
+							<li><a href="#">Latest News</a></li>
+							<li><a href="#">Newsletter</a></li>
+                            <li><a href="#">Applications</a></li>
+							<li><a href="#">Exhibitions</a></li>
+					   </ul>
+			</li>
+            
+            <li><a href="#">Support</a>
+						<ul>
+							<li><a href="#">Branches</a></li>
+							<li><a href="#">Sales & Distributors</a></li>
+                            <li><a href="#">Customer Care</a></li>
+							<li><a href="#">Download</a></li>
+					   </ul>
+			</li>
+
+			 <li><a href="#">Language</a>
+				<ul>
+					<li><input value="IT" type="button" onclick="selectLanguage('it')"</li>
+					<li><input value="ZH" type="button" onclick="selectLanguage('zh')"</li>
+					<li><input value="EN" type="button" onclick="selectLanguage('en')"</li>
+				</ul>
+			 </li>            
+			 
+      </ul>
+	
+		<!-- END Menu -->
+
+<div id="searchbox"><a href="#"><img src="img/search.gif" width="140" height="37" alt="search" /></a></div>
+<div id="flagbox"><a href="#"><img src="img/flag.gif" width="50" height="37" alt="flag" /></a></div>       
+</div>
+
+</div>
+</div>
+
+<div class="container">
+<div class="grid" id="block_center">
+<div id="area_main"><a href="#"><img src="img/main1.jpg" width="941" height="356" alt="IT-115" /></a></div>
+</div>
+<div class="grid" id="block_down">
+<div id="area_down"><a href="#"><img src="img/main2.jpg" width="941" height="256" alt="IT-115" /></a></div>
+</div>
+</div>
+<div class="container">
+<div class="grid" id="footer">
+	<p class="center"><a href="#" title="ESA Elettronica S.p.A.">ESA Elettronica S.p.A.</a> - 13464240152 - | <a href="#" title="Contatti"> CONTATTI</a> | <a href="#" title="Mappa del sito">MAPPA DEL SITO</a> | <a href="#" title="Disclaimer"> DISCLAIMER</a> | <a href="#" title="Privacy">PRIVACY</a> | <a href="#" title="Link">LINK</a> | Powered by <a href="#" title="Web Ratio">Web Ratio</a></p> 
+  </div>
+</div>
+</body>
+</html>
+
